@@ -14,7 +14,7 @@ const Count = () => {
         </TouchableOpacity>
     </View>
   )
-}
+} 
 
 export default Count
 
