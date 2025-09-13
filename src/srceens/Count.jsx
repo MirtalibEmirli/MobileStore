@@ -8,7 +8,7 @@ const Count = () => {
         Count:{count} </Text>
 
         <TouchableOpacity onPress={()=>{setCount(count+1)}} style={{backgroundColor:'blue',paddingHorizontal:10,paddingVertical:10,borderRadius:5,marginTop:20}   }>
-          <Text style={{fontSize:17,color:'white',fontWeight:'500'}}>
+          <Text  style={{fontSize:17,color:'white',fontWeight:'500'}}>
             Increase
           </Text>
         </TouchableOpacity>
