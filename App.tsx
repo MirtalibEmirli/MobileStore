@@ -6,22 +6,20 @@
  */
 import "./global.css"
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import {
+ import {
   StatusBar,
-  StyleSheet,
-  useColorScheme,
+   useColorScheme,
   View,
-  Button,
-  Alert,
+  
 } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import Hello from './src/srceens/Hello';
-import Count from './src/srceens/Count';
+} from 'react-native-safe-area-context'; 
 
+
+import Login from './src/screens/Login';
+import HomePage from './src/screens/HomePage';
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -48,14 +46,13 @@ function AppContent() {
         // paddingLeft: insets.left,
         // paddingRight: insets.right,
       }}
-    >
+    > 
 
 
-      <Count/>
-      {/* <Hello /> */}
-       {/* <Button title='Click ' color='green' onPress={()=>{Alert.alert("Button Clicked!")}}></Button> */}
-   
-   
+      <HomePage />
+
+
+      
     </View>
   );
 }
