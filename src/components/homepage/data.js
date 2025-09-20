@@ -1,12 +1,4 @@
-import { ScrollView } from 'react-native'
-import List from '../components/homepage/List'
-import Categories from '../components/homepage/Categories'
-import Banner from '../components/homepage/Banner'
-
-
-const HomePage =()=>{
-
- const techProducts = [
+ export const   techProducts = [
   {
     id: 1,
     title: 'Macbook Pro 16"',
@@ -44,8 +36,10 @@ const HomePage =()=>{
   },
 ];
 
+   
 
-  const sportsProducts = [
+
+ export const sportsProducts = [
   {
     id: 6,
     title: 'Adidas Football',
@@ -86,7 +80,9 @@ price: 129,
     price: 25,
   },
 ];
-const foodProducts = [
+ 
+
+export const foodProducts = [
   {
     id: 11,
     title: 'Pepperoni Pizza',
@@ -124,7 +120,7 @@ const foodProducts = [
   },
 ];
 
-const fashionProducts = [
+export const fashionProducts = [
   {
     id: 16,
     title: 'Levi’s Denim Jacket',
@@ -161,7 +157,7 @@ const fashionProducts = [
     price: 120,
   },
 ];
-const bookProducts = [
+export const bookProducts = [
   {
     id: 21,
     title: 'Atomic Habits',
@@ -198,23 +194,3 @@ const bookProducts = [
     price: 45,
   },
 ];
-
-    return(
-        <ScrollView className="flex-1">
-            <Banner/>
-            <Categories/>
-            <List data={techProducts} tittle="Tech products"/>
-            <List data={sportsProducts} tittle="Sports products"/>
-            <List data={foodProducts
-} tittle="Food products"/>
-           
-            <List data={fashionProducts} tittle="Fashion products"/>
-            <List data={bookProducts
-
-            } tittle="Book products"/>
-
-        </ScrollView>
-    )
-}
-
-export default HomePage

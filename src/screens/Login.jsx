@@ -1,7 +1,13 @@
 import {  Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useState } from 'react'
 import logo from '../assets/logo.png'
+ import { useMMKVBoolean } from 'react-native-mmkv';
+
 const Login = () => {
+    const [isAuthenticated,setIsAuthenticated] = useMMKVBoolean('isAuthenticated');
+
+
+
     const [formdata, setFormdata] = useState({})
     const [showPassword, setShowPassword] = useState(false)
 
@@ -42,7 +48,7 @@ const Login = () => {
             </View>
 
             <TouchableOpacity className='w-full' onPress={() => {
-                console.log(formdata)
+            setIsAuthenticated(true);
             }} style={{ backgroundColor: 'blue', paddingHorizontal: 20, paddingVertical: 10, marginTop: 20 }}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight: '500', textAlign: 'center' }}>
                     Submit

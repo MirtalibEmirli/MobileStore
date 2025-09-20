@@ -1,9 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+ 
 import "./global.css"
 
  import {
@@ -17,10 +12,10 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context'; 
 
+import Navigator from './src/stacks/Navigator'
+import { red } from "react-native-reanimated/lib/typescript/Colors";
 
-import Login from './src/screens/Login';
-import HomePage from './src/screens/HomePage';
-function App() {
+ function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
@@ -37,21 +32,15 @@ function AppContent() {
   return (
     <View
       style={{
-        flex: 1,
+        flex: 1, 
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
-        justifyContent: 'center',
-        alignItems: 'center',
+         
 
-        // paddingLeft: insets.left,
-        // paddingRight: insets.right,
       }}
     > 
-
-
-      <HomePage />
-
-
+ 
+      <Navigator />
       
     </View>
   );
