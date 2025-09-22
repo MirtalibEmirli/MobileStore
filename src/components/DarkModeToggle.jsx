@@ -5,7 +5,7 @@ const DarkModeToggle = () => {
   const [darkmode,setDarkmode]=useMMKVBoolean('darkmode')
   return (
         <TouchableOpacity className='bg-orange-500 rounded-full w-[50px]' onPress={()=>
-          {setDarkmode(prevstate=>!prevstate)}}><Text>{darkmode?"light":"dark"}</Text></TouchableOpacity>
+          {setDarkmode(prevstate=>!prevstate)}}><Text className='text-center'>{darkmode?"light":"dark"}</Text></TouchableOpacity>
 
   )
 }

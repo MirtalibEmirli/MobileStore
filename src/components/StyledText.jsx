@@ -4,7 +4,8 @@ import {    Text  } from 'react-native'
 const StyledText = ({value,className}) => {
   const [darkmode,setDarkmode]=useMMKVBoolean('darkmode')
   return (
-           <Text className={`${className} ${darkmode ? "text-white" : "text-black"}`}>{value}</Text> 
+           <Text className=
+           {`${className} ${darkmode ? "text-white" : "text-black"}`}>{value}</Text> 
 
   )
 }
