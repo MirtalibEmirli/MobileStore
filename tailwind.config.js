@@ -4,7 +4,14 @@ module.exports = {
   content: ["./App.tsx", "./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'orbitron-semibold': 'Orbitron-SemiBold',
+        'orbitron-medium': 'Orbitron-Medium',
+        'orbitron-extra': 'Orbitron-ExtraBold',
+        'orbitron': 'Orbitron-Regular',
+      },
+    },
   },
   plugins: [],
 }

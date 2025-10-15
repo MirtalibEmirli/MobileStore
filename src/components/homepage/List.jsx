@@ -1,5 +1,5 @@
 import { FlatList, Image, Text, View ,TouchableOpacity} from "react-native";
-
+import FastImage from "react-native-fast-image";
 import StyledText from "../StyledText";
 import { Link, useNavigation } from "@react-navigation/native";
 const List = ({ data, tittle ,selectedCategory}) => {
@@ -30,7 +30,7 @@ const List = ({ data, tittle ,selectedCategory}) => {
             className={`w-[200px] border-[1px] border-zinc-300 rounded-lg overflow-hidden 
               ${item.category===selectedCategory||selectedCategory==='All' ? '' :'hidden' }`}
           >
-            <Image source={{uri:item.image}} className='h-[150px] w-full  
+            <FastImage resizeMode="contain" source={{uri:item.image}} style={{width:200,height:150}} className='h-[150px] w-full  
              object-scale-down'/>
             <View className="p-2">
 
@@ -38,8 +38,8 @@ const List = ({ data, tittle ,selectedCategory}) => {
 
                </StyledText>
 
-                <StyledText className='mt-1 text-zinc-500
-                 text-sm' >{item.price}</StyledText>
+                <StyledText value= {item.price+'$'}  className='mt-1 
+                 text-sm' ></StyledText>
             </View>
           </TouchableOpacity>
         )}

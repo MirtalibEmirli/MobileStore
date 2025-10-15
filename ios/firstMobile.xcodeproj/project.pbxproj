@@ -11,6 +11,11 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A5F11E70F45C41CDA7949443 /* Orbitron-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4B63F5EF7B14DA09230853E /* Orbitron-Bold.ttf */; };
+		F364B2F618624F9696373D2D /* Orbitron-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3AF2E08B844846BF4C3375 /* Orbitron-ExtraBold.ttf */; };
+		B8F3C90EBAF349ADB700D7C4 /* Orbitron-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F26C92556324C7B9A305601 /* Orbitron-Medium.ttf */; };
+		5505CF28D4364A19A84F570D /* Orbitron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CB22792ED53458193C020EC /* Orbitron-Regular.ttf */; };
+		CA8663C6E50A41AF95D869F8 /* Orbitron-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E9589E4528A497C8CA3FF96 /* Orbitron-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = firstMobile/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = firstMobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E4B63F5EF7B14DA09230853E /* Orbitron-Bold.ttf */ = {isa = PBXFileReference; name = "Orbitron-Bold.ttf"; path = "../src/assets/fonts/Orbitron-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2A3AF2E08B844846BF4C3375 /* Orbitron-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Orbitron-ExtraBold.ttf"; path = "../src/assets/fonts/Orbitron-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8F26C92556324C7B9A305601 /* Orbitron-Medium.ttf */ = {isa = PBXFileReference; name = "Orbitron-Medium.ttf"; path = "../src/assets/fonts/Orbitron-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1CB22792ED53458193C020EC /* Orbitron-Regular.ttf */ = {isa = PBXFileReference; name = "Orbitron-Regular.ttf"; path = "../src/assets/fonts/Orbitron-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7E9589E4528A497C8CA3FF96 /* Orbitron-SemiBold.ttf */ = {isa = PBXFileReference; name = "Orbitron-SemiBold.ttf"; path = "../src/assets/fonts/Orbitron-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +84,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				8AC52D674F5F4B2FA5BDBDB6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -96,6 +107,19 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		8AC52D674F5F4B2FA5BDBDB6 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				E4B63F5EF7B14DA09230853E /* Orbitron-Bold.ttf */,
+				2A3AF2E08B844846BF4C3375 /* Orbitron-ExtraBold.ttf */,
+				8F26C92556324C7B9A305601 /* Orbitron-Medium.ttf */,
+				1CB22792ED53458193C020EC /* Orbitron-Regular.ttf */,
+				7E9589E4528A497C8CA3FF96 /* Orbitron-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -159,6 +183,11 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				A5F11E70F45C41CDA7949443 /* Orbitron-Bold.ttf in Resources */,
+				F364B2F618624F9696373D2D /* Orbitron-ExtraBold.ttf in Resources */,
+				B8F3C90EBAF349ADB700D7C4 /* Orbitron-Medium.ttf in Resources */,
+				5505CF28D4364A19A84F570D /* Orbitron-Regular.ttf in Resources */,
+				CA8663C6E50A41AF95D869F8 /* Orbitron-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
