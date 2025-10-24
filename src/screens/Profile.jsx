@@ -4,7 +4,7 @@ import React from 'react'
 import StyledView from '../components/StyledView';
 import {useTranslation} from 'react-i18next';
 import LanguageSelect from '../components/LanguageSelect';
-import MockUser from "../assets/icons/profile-simple"
+import MockUser from "../assets/icons/profile"
 import StyledText from '../components/StyledText';
 const Profile = () => {
   const {t} = useTranslation();

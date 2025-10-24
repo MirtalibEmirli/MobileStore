@@ -1,36 +1,61 @@
-import {  FlatList, Text, TouchableOpacity } from 'react-native'
- 
+import React from 'react';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
+import Vol from '../../assets/icons/volleyball.svg';
+import PlugZap from '../../assets/icons/plug-zap.svg';
+import Shirt from '../../assets/icons/shirt.svg';
+import Sofa from '../../assets/icons/sofa.svg';
+import BookCopy from '../../assets/icons/book-copy.svg';
 
-const Categories = ({selectedCategory, onSelectCategory}) => {
-
-   const categories = [
-  { id: 1, title: 'All' },
-  { id: 2, title: 'Tech' },
-  { id: 3, title: 'Sports' },
-  { id: 4, title: 'Food' },
-  { id: 5, title: 'Fashion' },
-  { id: 6, title: 'Books' },
-];
+const Categories = ({ selectedCategory, onSelectCategory }) => {
+  const categories = [
+      
+    { name: 'All', component: Vol },
+    { name: 'Sports', component: Vol },
+    { name: 'Electronics', component: PlugZap },
+    { name: 'Clothing', component: Shirt },
+    { name: 'Furniture', component: Sofa },
+    { name: 'Books', component: BookCopy },
+  ];
 
   return (
-    <FlatList  showsHorizontalScrollIndicator={false} horizontal data={categories}
-    contentContainerClassName="px-4 gap-3" renderItem={({item})=>(
-        <TouchableOpacity onPress={()=>onSelectCategory(item.title
-            
-        )} key={item.id}   className={`p-2 rounded-lg min-w-6 ${
-            selectedCategory === item.title ? 'bg-indigo-700' : 'bg-indigo-400'
-          }`}>
-            <Text  className="text-black text-lg ">{item.title}</Text>
+    <View style={{ paddingHorizontal: 16, marginBottom: 24 }}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingVertical: 10 }}>
+        {categories.map((category) => (
+          <TouchableOpacity
+            key={category.name}
+            onPress={() => onSelectCategory(category.name)}
+            style={{
+              marginRight: 12,
+              paddingVertical: 10,
+              paddingHorizontal: 16,
+              borderRadius: 20,
+              backgroundColor: selectedCategory === category.name ? '#8E6CEF' : '#F9FAFB',
+              alignItems: 'center', // Center the content horizontally
+            }}
+          >
+            <View
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: 40,
+                overflow: 'hidden',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#f3f3f3',
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.1,
+                shadowRadius: 5,
+                elevation: 5,
+              }}
+            >
+              <category.component width="70" height="70"   />  
+            </View>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
 
-        </TouchableOpacity>
-
-    )}>
-
-
-    </FlatList>
-  )
-}
-
-export default Categories
-
- 
+export default Categories;

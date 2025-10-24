@@ -1,64 +1,115 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
-import api from  "../../utils/axios"
-import { setRefreshToken, setToken } from '../../utils/store'
-import StyledText from '../../components/StyledText'
-import { TextInput } from 'react-native'
-import Eye from '../../assets/icons/eye.svg'
-import EyeOff from '../../assets/icons/Eyeoff.svg'
+import React, { useState } from "react";
+import { View, TextInput, TouchableOpacity } from "react-native";
+import { useMMKVBoolean } from "react-native-mmkv";
+import StyledText from "../../components/StyledText";
+import StyledView from "../../components/StyledView";
+import Eye from "../../assets/icons/eye.svg";
+import EyeOff from "../../assets/icons/Eyeoff.svg";
+import api from "../../utils/axios";
+import { setToken, setRefreshToken } from "../../utils/store";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import { useNavigation } from "@react-navigation/native";  // Ensure to import navigation
+
 const Login = () => {
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
+  const [darkmode] = useMMKVBoolean("darkmode");
+  const navigation = useNavigation();  // Corrected typo
 
-  const [formData, setFormData] = useState({})
-  const [showPassword, setShowPassword] = useState(false)
-  const handleInput=(text,type)=>{
-  setFormData(prevState=>({
-    ...prevState,
-    [type]:text
-  }))     
+  const handleInput = (text, field) => {
+    setFormData((prev) => ({ ...prev, [field]: text }));
+  };
 
-  }
-   
+  const handleLogin = async () => {
+    try {
+      const { data } = await api.post("/auth/login", formData);
+      setToken(data.accessToken);
+      setRefreshToken(data.refreshToken);
+      console.log("Login successful:", data);
+      // After successful login, navigate to the home or dashboard page
+      navigation.navigate("HomeScreen");
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
 
-const handleLogin = async() =>{
-  try {
-     const {data} = await  api.post('/auth/login',formData);
-     setToken(data.accessToken);
-     setRefreshToken(data.refreshToken)
-      console.log(data);
-  } 
-  catch (error) {
-    console.error('Login error:',error);
-  }
-}
+  return (
+    <StyledView>
+      <View
+        className={`flex-1 items-center ${darkmode ? "bg-[#1C1A22]" : "bg-[#F9F9F9]"}`}
+      >
+        <View className="w-full mt-24 px-6 items-center">
+          <StyledText
+            value="Sign in"
+            className={`text-[33px] font-montserrat font-bold self-start mb-8 ${
+              darkmode ? "text-white" : "text-black"
+            }`}
+          />
 
+          {/* Email Input */}
+          <TextInput
+            placeholder="Email Address"
+            placeholderTextColor={darkmode ? "#C9C9C9" : "#9CA3AF"}
+            value={formData.email}
+            onChangeText={(t) => handleInput(t, "email")}
+            className={`font-montserrat h-[56px] w-[362px] pl-4 rounded-sm mb-4 ${
+              darkmode ? "bg-[#342F3F] text-white" : "bg-[#F4F4F4] text-black"
+            }`}
+          />
 
- 
- return (
-    <View className="flex-1 justify-center items-center">
+          {/* Password Input */}
+          <View className="w-[362px] relative">
+            <TextInput
+              placeholder="Password"
+              placeholderTextColor={darkmode ? "#C9C9C9" : "#9CA3AF"}
+              secureTextEntry={!showPassword}
+              value={formData.password}
+              onChangeText={(t) => handleInput(t, "password")}
+              className={`font-montserrat h-[56px] pl-4 pr-12 rounded-sm ${
+                darkmode ? "bg-[#342F3F] text-white" : "bg-[#F4F4F4] text-black"
+              }`}
+            />
+            <TouchableOpacity
+              onPress={() => setShowPassword((p) => !p)}
+              className="absolute right-4 top-[16px]"
+            >
+              {showPassword ? (
+                <EyeOff width={22} height={22} />
+              ) : (
+                <Eye width={22} height={22} />
+              )}
+            </TouchableOpacity>
+          </View>
 
-      <StyledText value={"Login"} className={"text-xl text-black font-medium"}/>
-      <TextInput placeholder='Enter email ' className="border-2 font-orbitron-semibold border-gray-500 w-[350px] pl-4 mt-4" onChangeText={(text) => {
-        handleInput(text, 'email')
-      }}/>
+          {/* Continue Button */}
+          <TouchableOpacity
+            onPress={handleLogin}
+            className="w-[362px] bg-[#8E6CEF] rounded-full py-4 mt-6"
+          >
+            <StyledText
+              value="Continue"
+              className="text-white text-[15px] text-center font-montserrat"
+            />
+          </TouchableOpacity>
 
-      <View className="border-2  border-gray-700 w-[350px] pl-4 mt-4  relative">
-      <TextInput onChangeText={(text) => {
-        handleInput(text,"password")
-      }} secureTextEntry ={!showPassword} placeholder="Enter password" className="w-[350px] pl-4  font-orbitron-semibold"/>
-    
-      <TouchableOpacity onPress={()=>{setShowPassword(prevState=>!prevState)}} className="absolute right-4 top-2" >
-        {showPassword?<EyeOff  />:<Eye />}
-      </TouchableOpacity>
-  </View>
-      <TouchableOpacity   className="w-full bg-blue-700 px-5 py-5 mt-5 " onPress={() => {handleLogin()}}>
-      <StyledText value={"Submit"} className={"text-lg font-orbitron-semibold  text-center"}></StyledText>
-      </TouchableOpacity>
-    </View>
-  )   }
+          <View className="flex-row justify-center mt-3">
+            <StyledText
+              value="Don’t have an Account?"
+              className={`text-[13px] ${darkmode ? "text-gray-300" : "text-black"}`}
+            />
+            <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
+              <StyledText
+                value=" Create One"
+                className={`text-[13px] font-bold ${
+                  darkmode ? "text-white" : "text-black"
+                }`}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </StyledView>
+  );
+};
 
-
- 
-
-export default Login
-
-// const styles = StyleSheet.create({})
+export default Login;

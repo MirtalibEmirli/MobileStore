@@ -6,7 +6,7 @@ const StyledView = ({children}) => {
     const [darkmode,setDarkmode]=useMMKVBoolean('darkmode')
 
   return (
-    <View className={`flex-1 ${darkmode?'bg-black':'bg-white'}`}>
+    <View className={`flex-1 ${darkmode?'bg-[#1D182A]':'bg-white'}`}>
       {children}
     </View>
   )

@@ -2,26 +2,26 @@ import { FlatList, View, TouchableOpacity, Image } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import StyledText from '../StyledText';
 import { useNavigation } from '@react-navigation/native';
-import HeartIcon from '../../assets/icons/Blackheart.svg';  
+import HeartIcon from '../../assets/icons/heart.svg'; // Assume this is your heart icon SVG
 
-const List = ({ data,   selectedCategory }) => {
+const ListAll = ({ data, title  }) => {
   const navigation = useNavigation();
- 
+console
+.log("AllList component data:", data,title); 
   return (
     <View className="mb-8">
-      
-        
+      <StyledText value={title} className="text-2xl font-bold text-gray-800 ml-6 mb-4" />
+     
       <FlatList
         data={data}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 10 }}
         renderItem={({ item }) => (
-          item.category === selectedCategory || selectedCategory === 'all' ? (
-            <TouchableOpacity  
+      
+            <TouchableOpacity
               onPress={() => navigation.navigate("DetailsScreen", { item })}
               style={{
-                position: 'relative',
                 width: 159,
                 height: 209,
                 marginRight: 12,
@@ -35,9 +35,7 @@ const List = ({ data,   selectedCategory }) => {
                 elevation: 5,  
               }}
             >
-       
-              
-                   <FastImage
+              <FastImage
                 source={{ uri: item.images[0] }}
                 style={{ width: '100%', height: 150 }}
                 resizeMode="cover"
@@ -51,28 +49,21 @@ const List = ({ data,   selectedCategory }) => {
                   />
                   <StyledText
                     value={`$${item.price}`}
-                    className="mt-1 text-sm  font-bold text-[#272727] "
+                    className="mt-1 text-sm font-medium text-gray-700"
                   />
                 </View>
                 <TouchableOpacity
                   style={{ alignSelf: 'flex-end', padding: 4 }}
                 >
-                  
+                  <HeartIcon width={22} height={22} color="#8E6CEF" />
                 </TouchableOpacity>
               </View>
-
-                <TouchableOpacity style={{ position: 'absolute', top: 8, right: 8 }} >
-     <HeartIcon width={22} height={22} color="#8E6CEF" />
-
-                </TouchableOpacity>
-
-
             </TouchableOpacity>
-          ) : null
+           
         )}
       />
     </View>
   );
 };
 
-export default List;
+export default ListAll;
