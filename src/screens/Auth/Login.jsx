@@ -10,7 +10,7 @@ import { setToken, setRefreshToken} from "../../utils/store";
 import { setIsAuthenticated} from "../../utils/store";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import { useNavigation } from "@react-navigation/native";  // Ensure to import navigation
-   
+  
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -23,19 +23,17 @@ const Login = () => {
   const handleLogin = async () => {
   try {
     const { data } = await api.post("/auth/login", formData);
-    
-    // Save with correct keys
 
-    setToken(data.accessToken);
-    setRefreshToken(data.refreshToken);
+    setToken(data.accessToken); // Must exist
+    if (data.refreshToken) {
+      setRefreshToken(data.refreshToken);
+    }
 
     setIsAuthenticated(true);
-    
-console.log('Stored accessToken:', storage.getString('accessToken'));
-console.log('Stored refreshToken:', storage.getString('refreshToken'));
+
     
   } catch (error) {
-    console.error("Login error:", error);
+    console.error("Login error:", error.response?.data || error);
   }
 };
   return (

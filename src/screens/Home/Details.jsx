@@ -33,6 +33,7 @@ const Details = () => {
       fetchProductDetails();
       fetchSimilarProducts();
     }
+    console.log("ID ",productId)
   }, [productId]);
 
   const fetchProductDetails = async () => {
@@ -100,6 +101,7 @@ const Details = () => {
     isLiked={isWishlisted}
     top={6}
     right={4}
+    productId={productId}
     size={30}
     bg='#F4F4F4'
   />
@@ -224,7 +226,7 @@ const Details = () => {
                     </Text>
                   </View>
                   <TouchableOpacity className="absolute top-2 right-2 p-1 bg-white/80 rounded-full">
-                 <Like/>
+                 <Like productId={item._id }/>
                   </TouchableOpacity>
                 </View>
               </TouchableOpacity>

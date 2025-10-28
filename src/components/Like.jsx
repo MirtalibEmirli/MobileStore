@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import HeartIcon from '../assets/icons/Blackheart.svg';
 import { addToFavorites, removeFromFavorites } from '../utils/favorites';
-
+ 
 const Like = ({
   productId,
   initialLiked = false,
@@ -14,23 +14,27 @@ const Like = ({
 }) => {
   const [isLiked, setIsLiked] = useState(initialLiked);
 
-  useEffect(() => {
-    setIsLiked(initialLiked);
-  }, [initialLiked]);
+  useEffect(() => setIsLiked(initialLiked), [initialLiked]);
 
   const toggleLike = async () => {
     const newState = !isLiked;
-    setIsLiked(newState);
+    setIsLiked(newState);               // optimistic UI
 
-    if (newState) {
-      const success = await addToFavorites(productId);
-      if (!success) setIsLiked(false);
-    } else {
-      const success = await removeFromFavorites(productId);
-      if (!success) setIsLiked(true);
+    const id = String(productId).trim();
+    if (!/^[0-9a-fA-F]{24}$/.test(id)) {
+      console.error('Invalid productId:', productId);
+      setIsLiked(!newState);
+      return;
     }
-  };
 
+    const success = newState
+      ? await addToFavorites(id)
+      : await removeFromFavorites(id);
+
+    if (!success) setIsLiked(!newState); // revert on API error
+  };
+// if (success) Toast.show({ type: 'success', text1: newState ? 'Added' : 'Removed' });
+// else Toast.show({ type: 'error', text1: 'Failed' });
   return (
     <TouchableOpacity
       onPress={toggleLike}

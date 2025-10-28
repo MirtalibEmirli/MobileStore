@@ -1,64 +1,60 @@
 // src/utils/api.js
 import axios from 'axios';
-import { getToken, getRefreshToken, setToken, setRefreshToken, clearToken } from './store';
+import { getToken } from './store';
 import { refreshToken } from './auth';
 
 const api = axios.create({
-  baseURL: 'https://ilkinibadov.com/api/v1',
-  timeout: 10000,
+  baseURL: 'https://ilkinibadov.com/api/v1',   // ← FULL DOMAIN
+  timeout: 15000,
   headers: { 'Content-Type': 'application/json' },
 });
 
-// ---- Request: add Bearer token ----
-api.interceptors.request.use(config => {
+// ---- Add Bearer token ----
+api.interceptors.request.use(cfg => {
   const token = getToken();
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
+  if (token) cfg.headers.Authorization = `Bearer ${token}`;
+  return cfg;
 });
 
-// ---- Response: 401 → refresh + queue ----
+// ---- 401 → refresh (queue) ----
 let isRefreshing = false;
 let failedQueue = [];
 
-const processQueue = (error, token = null) => {
-  failedQueue.forEach(p => (error ? p.reject(error) : p.resolve(token)));
+const processQueue = (err, token = null) => {
+  failedQueue.forEach(p => (err ? p.reject(err) : p.resolve(token)));
   failedQueue = [];
 };
 
 api.interceptors.response.use(
-  res => res,
-  async error => {
-    const original = error.config;
-
-    if (error.response?.status === 401 && !original._retry) {
-      original._retry = true;
+  r => r,
+  async err => {
+    const orig = err.config;
+    if (err.response?.status === 401 && !orig._retry) {
+      orig._retry = true;
 
       if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        })
+        return new Promise((res, rej) => failedQueue.push({ res, rej }))
           .then(t => {
-            original.headers.Authorization = `Bearer ${t}`;
-            return api(original);
+            orig.headers.Authorization = `Bearer ${t}`;
+            return api(orig);
           })
-          .catch(err => Promise.reject(err));
+          .catch(e => Promise.reject(e));
       }
 
       isRefreshing = true;
       try {
-        const newToken = await refreshToken();
-        processQueue(null, newToken);
-        original.headers.Authorization = `Bearer ${newToken}`;
-        return api(original);
+        const newT = await refreshToken();
+        processQueue(null, newT);
+        orig.headers.Authorization = `Bearer ${newT}`;
+        return api(orig);
       } catch (e) {
         processQueue(e, null);
-        clearToken();
         return Promise.reject(e);
       } finally {
         isRefreshing = false;
       }
     }
-    return Promise.reject(error);
+    return Promise.reject(err);
   }
 );
 

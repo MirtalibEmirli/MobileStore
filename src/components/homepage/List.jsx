@@ -7,6 +7,9 @@ import Like from '../Like';
 
 const List = ({ data,   selectedCategory }) => {
   const navigation = useNavigation();
+
+
+  console.log(data,"Lsite gelen data formasi")
  if (data.length === 0) return null;
   return (
     <View className="mb-8">
@@ -62,10 +65,10 @@ const List = ({ data,   selectedCategory }) => {
                 </TouchableOpacity>
               </View>
 
-                <TouchableOpacity style={{ position: 'absolute', top: 8, right: 8 }} >
-     <Like productId={item._id} width={22} height={22} color="#8E6CEF" />
+                {/* <TouchableOpacity style={{ position: 'absolute', top: 8, right: 8 }} > */}
+     {/* <Like productId={item._id} width={22} height={22} color="#8E6CEF" /> */}
 
-                </TouchableOpacity>
+                {/* </TouchableOpacity> */}
 
 
             </TouchableOpacity>

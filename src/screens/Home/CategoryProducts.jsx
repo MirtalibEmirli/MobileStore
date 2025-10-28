@@ -184,11 +184,13 @@ const CategoryProducts = ({ route }) => {
               />
               <View style={{ padding: 10, flex: 1, justifyContent: 'space-between' }}>
                 <View>
+
                   <StyledText
                     value={item.title}
                     className="text-base font-semibold   h-[20px] text-gray-900 line-clamp-2"
                     numberOfLines={2}
                   />
+
                   <StyledText
                     value={`$${item.price}`}
                     className="mt-1 text-sm  font-bold text-[#272727] "
@@ -202,7 +204,7 @@ const CategoryProducts = ({ route }) => {
               </View>
 
                 <TouchableOpacity style={{ position: 'absolute', top: 8, right: 8 }} >
-     <Like/>
+     {/* <Like/> */}
 
                 </TouchableOpacity>
 

@@ -29,7 +29,10 @@ const Profile = () => {
  </View>
     <TouchableOpacity
       className="w-full absolute bottom-0 bg-slate-800 px-5 py-5"
-      onPress={() =>clearToken()}
+      onPress={() =>{
+        clearToken(),
+         setIsAuthenticated(false)
+      }}
     >
       <Text className="text-center text-white text-xl font-orbitron">
         {t("logout")}

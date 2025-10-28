@@ -3,15 +3,28 @@ import axios from 'axios';
 import { getRefreshToken, setToken, setRefreshToken, clearToken } from './store';
 
 export const refreshToken = async () => {
-  const token = getRefreshToken();
-  if (!token) throw new Error('No refresh token');
+  const currentRefreshToken = getRefreshToken();
 
-  const res = await axios.post('https://ilkinibadov.com/api/v1/auth/refresh', {
-    refreshToken: token,
-  });
+  if (!currentRefreshToken) {
+    console.warn('No refresh token available. User must log in again.');
+    clearToken();
+    throw new Error('No refresh token');
+  }
 
-  const { accessToken, refreshToken: newRefresh } = res.data;
-  setToken(accessToken);
-  setRefreshToken(newRefresh);
-  return accessToken;
+  try {
+    const res = await axios.post('https://ilkinibadov.com/api/v1/auth/refresh', {
+      refreshToken: currentRefreshToken,
+    });
+
+    const { accessToken, refreshToken: newRefreshToken } = res.data;
+
+    setToken(accessToken);
+    if (newRefreshToken) setRefreshToken(newRefreshToken); // Only if provided
+
+    return accessToken;
+  } catch (error) {
+    console.error('Token refresh failed:', error.response?.data || error);
+    clearToken();
+    throw error;
+  }
 };
