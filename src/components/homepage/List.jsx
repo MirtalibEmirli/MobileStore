@@ -2,11 +2,12 @@ import { FlatList, View, TouchableOpacity, Image } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import StyledText from '../StyledText';
 import { useNavigation } from '@react-navigation/native';
-import HeartIcon from '../../assets/icons/Blackheart.svg';  
+ 
+import Like from '../Like';
 
 const List = ({ data,   selectedCategory }) => {
   const navigation = useNavigation();
- 
+ if (data.length === 0) return null;
   return (
     <View className="mb-8">
       
@@ -16,10 +17,10 @@ const List = ({ data,   selectedCategory }) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 10 }}
-        renderItem={({ item }) => (
+        renderItem= { ({ item }) => (
           item.category === selectedCategory || selectedCategory === 'all' ? (
             <TouchableOpacity  
-              onPress={() => navigation.navigate("DetailsScreen", { item })}
+              onPress={() => navigation.navigate("DetailsScreen", { productId :item._id })}
               style={{
                 position: 'relative',
                 width: 159,
@@ -62,7 +63,7 @@ const List = ({ data,   selectedCategory }) => {
               </View>
 
                 <TouchableOpacity style={{ position: 'absolute', top: 8, right: 8 }} >
-     <HeartIcon width={22} height={22} color="#8E6CEF" />
+     <Like productId={item._id} width={22} height={22} color="#8E6CEF" />
 
                 </TouchableOpacity>
 

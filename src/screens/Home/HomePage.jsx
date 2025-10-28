@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 import List from '../../components/homepage/List';
 import Categories from '../../components/homepage/Categories';
 import { useNavigation } from '@react-navigation/native';
-import api from '../../utils/axios'; 
+import api from '../../utils/api'; 
 import StyledView from '../../components/StyledView';
 import Header from '../../components/Header';
 import StyledText from '../../components/StyledText';
 import SearchBar from '../../components/SearchBar';
+ 
 const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [products, setProducts] = useState([]);
@@ -23,7 +24,7 @@ const HomePage = () => {
     try {
       setLoading(true);
 
-      // Fetch all products
+   
       const productsParams = {
         page: 1,
         limit: 20,
@@ -32,8 +33,7 @@ const HomePage = () => {
       };
       const productsResponse = await api.get('/products', { params: productsParams });
       setProducts(productsResponse.data.products || []);
-      // console.log("Fetched products:", productsResponse.data);
-      // Fetch new products
+      
       const newProductsParams = { currency: '$' };
       const newProductsResponse = await api.get('/products/new', { params: newProductsParams });
       setNewProducts(newProductsResponse.data || []);
@@ -56,34 +56,46 @@ const HomePage = () => {
   return (
     <StyledView>
       <ScrollView style={{ flex: 1, backgroundColor: '#F9FAFB' }}>
-        {/* Header Section */}
+      
        <Header/>
 
-        <SearchBar/>
-
-        {/* Categories Section */}
+       
+ 
+ <SearchBar/>
+      
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, marginBottom: 16 }}>
           <Text style={{ fontSize: 18, fontWeight: '600', color: '#1F2937' }}>Categories</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{
+            navigation.navigate("AllCategoriesScreen")
+          }}>
             <StyledText className='text-[#272727] text-xl font-medium ' value={'See All'}/> 
           </TouchableOpacity>
         </View>
+
+
         <Categories selectedCategory={selectedCategory} onSelectCategory={(cat) => setSelectedCategory(cat)} />
+
+
+
+
 
         {/* New Products Section */}
         <View  style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, marginBottom: 8 }}>
         <StyledText value={'New In'} className="text-2xl font-bold text-[#8E6CEF] ml-1 mb-4" />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate('AllProductsScreen',{products:newProducts,Title:"New In"})}>
             <StyledText className='text-[#272727] text-xl font-medium ' value={'See All'}/> 
           </TouchableOpacity>
+
+
+
         </View>
         <List selectedCategory={selectedCategory.toLowerCase()} data={newProducts} t  />
 
         {/* All Products Section */}
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10, marginBottom: 8 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10, marginBottom: 12 }}>
   <StyledText value={'All Products'} className="text-2xl ml-2 font-bold text-[#1D182A]   mb-4" />
 
-           <TouchableOpacity onPress={()=>{}}>
+           <TouchableOpacity onPress={()=>navigation.navigate('AllProductsScreen',{products:products,Title:"All Products"})}>
             <StyledText className='text-[#272727] text-xl font-medium ' value={'See All'}/> 
           </TouchableOpacity>
         </View>

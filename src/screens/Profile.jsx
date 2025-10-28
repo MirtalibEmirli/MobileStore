@@ -6,6 +6,8 @@ import {useTranslation} from 'react-i18next';
 import LanguageSelect from '../components/LanguageSelect';
 import MockUser from "../assets/icons/profile"
 import StyledText from '../components/StyledText';
+
+import {clearToken} from '../utils/store'
 const Profile = () => {
   const {t} = useTranslation();
       const [isAuthenticated,setIsAuthenticated] = useMMKVBoolean('isAuthenticated');
@@ -27,7 +29,7 @@ const Profile = () => {
  </View>
     <TouchableOpacity
       className="w-full absolute bottom-0 bg-slate-800 px-5 py-5"
-      onPress={() => setIsAuthenticated(false)}
+      onPress={() =>clearToken()}
     >
       <Text className="text-center text-white text-xl font-orbitron">
         {t("logout")}

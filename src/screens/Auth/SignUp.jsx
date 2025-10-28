@@ -4,7 +4,7 @@ import { useMMKVBoolean } from "react-native-mmkv";
 import { useNavigation } from "@react-navigation/native";
 import StyledText from "../../components/StyledText";
 import StyledView from "../../components/StyledView";
-import api from "../../utils/axios";
+import api from "../../utils/api";
 import BackArrow from "../../assets/icons/back-arrow.svg";  // Arrow icon
 
 const SignUp = () => {

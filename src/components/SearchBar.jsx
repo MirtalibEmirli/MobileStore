@@ -1,19 +1,38 @@
-import { View, TextInput, Text } from 'react-native';
- 
-import SearchIcon from '../assets/icons/searchnormal1.svg'; 
+// src/components/SearchBar.jsx
+import React, { useState } from 'react';
+import {   TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import SearchIcon from '../assets/icons/searchnormal1.svg';
 
 const SearchBar = () => {
+  const navigation = useNavigation();
+  const [text, setText] = useState('');
+
+  const goToSearch = () => {
+    if (text.trim()) {
+      navigation.navigate('SearchScreen', { searchTerm: text.trim() });
+    } else {
+      navigation.navigate('SearchScreen');
+    }
+  };
+
   return (
-    <View className='flex-row items-center bg-gray-200 p-2 mx-4 my-4 h-[54px]
-     rounded-[100px] shadow-sm border border-gray-300' >
-      <Text className='ml-3'></Text>
-      <SearchIcon width={16} height={16} color="#8E6CEF"    />
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={goToSearch}
+      className="flex-row items-center bg-gray-200 mx-4 my-4 h-[54px] rounded-full shadow-sm border border-gray-300 px-4"
+    >
+      <SearchIcon width={16} height={16} color="#8E6CEF" />
       <TextInput
-        placeholder="Search"
-         className='   ml-2 text-[15px] text-gray-600' 
-        placeholderTextColor="#272727"
+        placeholder="Productname"
+        value={text}
+        onChangeText={setText}
+        onSubmitEditing={goToSearch}           
+        returnKeyType="search"
+        className="ml-2 flex-1 text-[15px] text-gray-600"
+        placeholderTextColor="gray-600"
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -3,12 +3,10 @@ import ProfileStack from './ProfileStack';
 import HomeStack from './HomeStack';
 import HomeActive from '../assets/icons/homeActive.svg';
  import Heart from '../assets/icons/heart.svg';
- import User from '../assets/icons/profile.svg';
+ 
 import UserActive from '../assets/icons/UserActive.svg';
-import HomeBar from '../assets/icons/homeInActive.svg';
- import HeartİnActive from '../assets/icons/heartİnactive.svg';
- import Notificationbing from "../assets/icons/notification.svg"
- import NotificationbingInActive from "../assets/icons/notificationbing.svg"
+  import Notificationbing from "../assets/icons/notification.svg"
+ 
  import { useMMKVBoolean } from 'react-native-mmkv';
 import FavoritesStack from './FavoritesStack';
 
@@ -28,25 +26,25 @@ const TabStack = () => {
              tabBarStyle: { backgroundColor:darkmode?"#1D182A":"#fff" },}}>
             <Tab.Screen
             options={{
-                tabBarIcon: ({ focused }) => focused ? <HomeActive /> : <HomeBar   />,
+                tabBarIcon: ({})=><HomeActive /> //({ focused }) => focused ? <HomeActive /> //: <HomeBar   />,
                 // tabBarLabelStyle: { fontSize: 12, marginBottom: 5}
             }}
                 name="Home" component={HomeStack} />
           
 
           <Tab.Screen options={{
-            tabBarIcon:({focused})=>focused?<Notificationbing/>:<NotificationbingInActive/>
+            tabBarIcon:({ })=> <Notificationbing/>
           }} name='Notfications' component={NotificationStack}/>
           <Tab.Screen options={
                 {
-                    tabBarIcon:({focused})=>focused?<Heart/>:<HeartİnActive/>
+                    tabBarIcon:({ })=><Heart/>
                 }
             
             } name='Favorites'component={FavoritesStack}  />
           
             <Tab.Screen
               options={{
-                tabBarIcon: ({ focused }) => focused ? <UserActive /> : <User />
+                tabBarIcon: ({   }) =>  <UserActive />  
             }}
             name="Profile" component={ProfileStack} />
 

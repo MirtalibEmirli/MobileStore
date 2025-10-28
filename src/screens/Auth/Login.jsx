@@ -5,11 +5,12 @@ import StyledText from "../../components/StyledText";
 import StyledView from "../../components/StyledView";
 import Eye from "../../assets/icons/eye.svg";
 import EyeOff from "../../assets/icons/Eyeoff.svg";
-import api from "../../utils/axios";
-import { setToken, setRefreshToken } from "../../utils/store";
+import api from "../../utils/api";
+import { setToken, setRefreshToken} from "../../utils/store";
+import { setIsAuthenticated} from "../../utils/store";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import { useNavigation } from "@react-navigation/native";  // Ensure to import navigation
-
+   
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -19,20 +20,24 @@ const Login = () => {
   const handleInput = (text, field) => {
     setFormData((prev) => ({ ...prev, [field]: text }));
   };
-
   const handleLogin = async () => {
-    try {
-      const { data } = await api.post("/auth/login", formData);
-      setToken(data.accessToken);
-      setRefreshToken(data.refreshToken);
-      console.log("Login successful:", data);
-      // After successful login, navigate to the home or dashboard page
-      navigation.navigate("HomeScreen");
-    } catch (error) {
-      console.error("Login error:", error);
-    }
-  };
+  try {
+    const { data } = await api.post("/auth/login", formData);
+    
+    // Save with correct keys
 
+    setToken(data.accessToken);
+    setRefreshToken(data.refreshToken);
+
+    setIsAuthenticated(true);
+    
+console.log('Stored accessToken:', storage.getString('accessToken'));
+console.log('Stored refreshToken:', storage.getString('refreshToken'));
+    
+  } catch (error) {
+    console.error("Login error:", error);
+  }
+};
   return (
     <StyledView>
       <View

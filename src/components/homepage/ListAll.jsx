@@ -20,7 +20,7 @@ console
         renderItem={({ item }) => (
       
             <TouchableOpacity
-              onPress={() => navigation.navigate("DetailsScreen", { item })}
+              onPress={() => navigation.navigate("DetailsScreen", { productId:item.id })}
               style={{
                 width: 159,
                 height: 209,
@@ -36,7 +36,7 @@ console
               }}
             >
               <FastImage
-                source={{ uri: item.images[0] }}
+                source={{ uri: item.image }}
                 style={{ width: '100%', height: 150 }}
                 resizeMode="cover"
               />

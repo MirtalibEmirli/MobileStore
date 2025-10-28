@@ -26,6 +26,7 @@ import notifee, { AndroidImportance } from '@notifee/react-native';
 
  function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  
   const {i18n} = useTranslation();
     const [selectedLanguage, setSelectedLanguage] =  useMMKVObject('selectedLanguage');
  const [fcmToken, setFcmToken] = useState<string | null>(null);

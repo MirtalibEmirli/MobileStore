@@ -3,18 +3,16 @@ import { ScrollView, View, TouchableOpacity } from 'react-native';
 import Vol from '../../assets/icons/volleyball.svg';
 import PlugZap from '../../assets/icons/plug-zap.svg';
 import Shirt from '../../assets/icons/shirt.svg';
-import Sofa from '../../assets/icons/sofa.svg';
-import BookCopy from '../../assets/icons/book-copy.svg';
+import all from '../../assets/icons/chart-bar-stacked.svg'
 
 const Categories = ({ selectedCategory, onSelectCategory }) => {
   const categories = [
       
-    { name: 'All', component: Vol },
+    { name: 'All', component: all },
     { name: 'Sports', component: Vol },
     { name: 'Electronics', component: PlugZap },
     { name: 'Clothing', component: Shirt },
-    { name: 'Furniture', component: Sofa },
-    { name: 'Books', component: BookCopy },
+    
   ];
 
   return (
@@ -35,8 +33,8 @@ const Categories = ({ selectedCategory, onSelectCategory }) => {
           >
             <View
               style={{
-                width: 80,
-                height: 80,
+                width: 60,
+                height: 60,
                 borderRadius: 40,
                 overflow: 'hidden',
                 justifyContent: 'center',
@@ -49,7 +47,7 @@ const Categories = ({ selectedCategory, onSelectCategory }) => {
                 elevation: 5,
               }}
             >
-              <category.component width="70" height="70"   />  
+              <category.component width="50" height="50"   />  
             </View>
           </TouchableOpacity>
         ))}
