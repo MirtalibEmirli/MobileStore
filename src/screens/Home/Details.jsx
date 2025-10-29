@@ -14,7 +14,7 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import Like from '../../components/Like';
 import GoBack from '../../components/GoBack';
-
+import { addToBasket } from '../../utils/basket';
 const Details = () => {
   const route = useRoute();
   const navigation = useNavigation();
@@ -27,6 +27,19 @@ const Details = () => {
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+const handleAddToBag = async () => {
+    const success = await addToBasket(productId, quantity);
+    if (success) {
+      Alert.alert('Success', 'Added to bag!');
+      // optional: navigate to Cart
+      // navigation.navigate('Cart');
+    } else {
+      Alert.alert('Error', 'Could not add to bag.');
+    }
+  };
+
+
 
   useEffect(() => {
     if (productId) {
@@ -149,7 +162,7 @@ const Details = () => {
         </View>
 
       {/* Quantity */}
-<View className="flex-row items-center w-[250px] rounded-full
+<View className="flex-row items-center rounded-full
  px-6 mt-6    bg-[#F4F4F4] h-20  justify-between bg-#F4F4F4">
 
   <Text className="text-xl font-medium text-gray-700 mr-6">Quantity</Text>
@@ -165,7 +178,7 @@ const Details = () => {
     </TouchableOpacity>
 
     {/* Quantity Number */}
-    <Text className="mx-6 text-base font-medium ml-2   text-gray-800">{quantity}</Text>
+    <Text className="mx-6 text-base font-medium ml-5   text-gray-800">{quantity}</Text>
 
 
 
@@ -239,7 +252,7 @@ const Details = () => {
 
       {/* Bottom Add to Bag */}
       <View className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-4">
-        <TouchableOpacity className="bg-purple-600 rounded-full py-4 flex-row items-center justify-center">
+        <TouchableOpacity onPress={handleAddToBag} className="bg-purple-600 rounded-full py-4 flex-row items-center justify-center">
           <Text className="text-white font-bold text-lg mr-3">
             {product.currency}{(product.price * quantity).toFixed(2)}
           </Text>

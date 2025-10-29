@@ -1,1 +1,11 @@
-{"logout":"Çıxış","profile":"Profil"}
+{
+  
+  "support": "Dəstək",
+  "terms_and_conditions": "Şərtlər və Qaydalar",
+  "logout": "Çıxış",
+  "profile_load_failed": "Profilinizi yükləmək mümkün olmadı. Zəhmət olmasa yenidən cəhd edin.",
+  "error": "Xəta",
+  
+
+
+"profile":"Profil"}

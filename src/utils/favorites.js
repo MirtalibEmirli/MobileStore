@@ -26,7 +26,9 @@ console.log("Removed")
 export const getFavorites = async () => {
   try {
     const res = await api.get('/favorites/products');
-    return res.data.products || [];
+    console.log("getFavorites  ",res)
+    console.log("getFavorites  ",res.data)
+    return res.data|| [];
   } catch (error) {
     console.error('Get favorites failed:', error.response?.data || error);
     return [];

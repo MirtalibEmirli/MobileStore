@@ -8,6 +8,7 @@ const FavoritesStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="FavoritesScreen" component={Favorites} />
+      
     </Stack.Navigator>
   )
 }

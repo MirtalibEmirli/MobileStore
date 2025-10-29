@@ -6,6 +6,8 @@ import Allcategoriess from '../screens/Home/AllCategories'
 import CategoryProductes from '../screens/Home/CategoryProducts'
 import AllProduct from '../screens/AllProducts'
 import Searchh from '../screens/Search'
+import CartPage from '../screens/Cart'
+import OrderPage from '../screens/OrderSuccessScreen'
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
@@ -18,6 +20,8 @@ const HomeStack = () => {
             <Stack.Screen name="CategoryProductsScreen" component={CategoryProductes} />
             <Stack.Screen name="AllProductsScreen" component={AllProduct} />
             <Stack.Screen name="SearchScreen" component={Searchh} />
+            <Stack.Screen name="CartScreen" component={CartPage} />
+            <Stack.Screen name="OrderScreen" component={OrderPage} />
         </Stack.Navigator>
     )
 }

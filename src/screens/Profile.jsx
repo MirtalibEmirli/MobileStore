@@ -1,49 +1,85 @@
-import { StyleSheet, Text, View,TouchableOpacity, Image } from 'react-native'
-import React from 'react'
- import { useMMKVBoolean } from 'react-native-mmkv';
-import StyledView from '../components/StyledView';
+// src/screens/Profile.tsx
+import React from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+ 
+} from 'react-native';
+import {useMMKVBoolean} from 'react-native-mmkv';
 import {useTranslation} from 'react-i18next';
-import LanguageSelect from '../components/LanguageSelect';
-import MockUser from "../assets/icons/profile"
+import StyledView from '../components/StyledView';
 import StyledText from '../components/StyledText';
-
-import {clearToken} from '../utils/store'
+import LanguageSelect from '../components/LanguageSelect';
+import MockUser from '../assets/icons/profile';   
+import {clearToken} from '../utils/store';
+import Arrow from '../assets/icons/arrowright2.svg'
 const Profile = () => {
   const {t} = useTranslation();
-      const [isAuthenticated,setIsAuthenticated] = useMMKVBoolean('isAuthenticated');
+  const [isAuthenticated, setIsAuthenticated] =
+    useMMKVBoolean('isAuthenticated');
 
   return (
-   <StyledView className=" ">
-  <View className="flex-1 relative   items-center gap-5">
-    <View className="w-full items-end p-5">
-      <LanguageSelect />
+    <StyledView className="flex-1 bg-white">
+       
+       
+       <View className="items-center pt-12 pb-8 bg-gray-50">
+    
+        <View className="w-24 h-24 rounded-full bg-gray-300
+         items-center justify-center overflow-hidden border-2 border-gray-400">
+          <MockUser width={80} height={80} />
+        </View>
+      </View>
+
+    
+<View className="px-5 mt-6 flex gap-2 space-y-2">
       
-    </View>
+      
 
- <View className='bg-sky-500 w-[200px] h-[250px] rounded-xl items-center gap-3 p-5'>
-     <View className="border-2 rounded-full mt-20 border-gray-800">
-    <MockUser   width={100} height={100}  />
-    </View>
-    <StyledText  value={"John Doe"} className={"font-orbitron-semibold text-lg"}></StyledText>
+      <TouchableOpacity className="flex  h-[73px]  
+         py-4 px-4 bg-gray-100 rounded-lg">
+         <StyledText
+          value="Gilbert Jones"
+          className=" text-lg font-semibold text-gray-900 font-orbitron-semibold"
+        />
 
- </View>
-    <TouchableOpacity
-      className="w-full absolute bottom-0 bg-slate-800 px-5 py-5"
-      onPress={() =>{
-        clearToken(),
-         setIsAuthenticated(false)
-      }}
-    >
-      <Text className="text-center text-white text-xl font-orbitron">
-        {t("logout")}
-      </Text>
-    </TouchableOpacity>
-  </View>
-</StyledView>
+  
+        <Text className=" font-orbitron-semibold  text-sm text-gray-500">
+          Gilbertjones001@gmail.com
+        </Text>
+      </TouchableOpacity>
 
-  )
-}
+         <TouchableOpacity className="flex-row  h-[56px] items-center justify-between py-4 px-4 bg-gray-100 rounded-lg">
+          <Text className="text-sm font-orbitron-semibold text-gray-800">{t("support")}</Text>
+          <Arrow height={24} width={24}/>
+        </TouchableOpacity>
 
-export default Profile
+    
+        <TouchableOpacity className="flex-row  h-[56px] items-center justify-between py-4 px-4 bg-gray-100 rounded-lg">
+          <Text className="text-sm font-orbitron-semibold text-gray-800">{t("terms_and_conditions")}</Text>
+          <Arrow height={24} width={24}/>
+        </TouchableOpacity>
+      </View>
+
+      
+      <View className="absolute top-6 right-5">
+        <LanguageSelect />
+      </View>
 
  
+      <View className="absolute bottom-24 left-0 right-0 items-center">
+        <TouchableOpacity
+          onPress={() => {
+            clearToken();
+            setIsAuthenticated(false);
+          }}
+          className=" px-12 py-3 rounded-full">
+          <Text className="text-[#FA3636]  font-orbitron-semibold text-xl   ">{t("logout")}</Text>
+        </TouchableOpacity>
+      </View>
+ 
+    </StyledView>
+  );
+};
+
+export default Profile;

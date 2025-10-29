@@ -8,7 +8,7 @@ import StyledView from '../../components/StyledView';
 import Header from '../../components/Header';
 import StyledText from '../../components/StyledText';
 import SearchBar from '../../components/SearchBar';
- 
+
 const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [products, setProducts] = useState([]);
