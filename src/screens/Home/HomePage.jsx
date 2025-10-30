@@ -81,12 +81,14 @@ const HomePage = () => {
 
         {/* New Products Section */}
         <View  style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, marginBottom: 8 }}>
-        <StyledText value={'New In'} className="text-2xl font-bold text-[#8E6CEF] ml-1 mb-4" />
+        <Text   className="text-2xl font-bold text-[#8E6CEF] ml-1 mb-4">
+          New In
+        </Text>
           <TouchableOpacity onPress={()=>navigation.navigate('AllProductsScreen',{products:newProducts,Title:"New In"})}>
             <StyledText className='text-[#272727] text-xl font-medium ' value={'See All'}/> 
           </TouchableOpacity>
 
-
+ 
 
         </View>
         <List selectedCategory={selectedCategory.toLowerCase()} data={newProducts} t  />

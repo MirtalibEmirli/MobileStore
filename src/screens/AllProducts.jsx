@@ -16,7 +16,7 @@ const AllProducts = ({ route }) => {
  
  
 
-  return (
+  return ( 
     <View className="flex-1 p-4  relative bg-white">
       <GoBack top={10} left={4}/>
       <Text className="text-2xl  mt-20 font-bold text-black mb-4">{Title} ({products.length})</Text>
@@ -29,7 +29,7 @@ const AllProducts = ({ route }) => {
      renderItem={({ item }) => (
        
             <TouchableOpacity  
-              onPress={() => navigation.navigate("DetailsScreen", { item })}
+              onPress={() => navigation.navigate("DetailsScreen", { productId:item._id })}
               className="flex  mt-5 relative w-[159px] h-[209px] mr-3 rounded-lg overflow-hidden bg-white shadow-lg"
             >
        

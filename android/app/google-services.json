@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1088503196085",
-    "project_id": "reactn-abec4",
-    "storage_bucket": "reactn-abec4.firebasestorage.app"
+    "project_number": "486335766593",
+    "project_id": "mobilestore-4a5b1",
+    "storage_bucket": "mobilestore-4a5b1.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1088503196085:android:9ac163a554b7f408be51fc",
+        "mobilesdk_app_id": "1:486335766593:android:8d37d800f76e64394b66c0",
         "android_client_info": {
           "package_name": "com.puapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCfiR0ymRjvp-V7tcPZhw8aGL3eklwOiCo"
+          "current_key": "AIzaSyAAxL8-ESuwYuoo2HK4IP5RmA_lLjBEiSg"
         }
       ],
       "services": {

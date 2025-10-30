@@ -21,7 +21,7 @@ import { useEffect ,useState} from "react";
 import messaging, { AuthorizationStatus } from '@react-native-firebase/messaging';
 import notifee, { AndroidImportance } from '@notifee/react-native';
  
-
+import { saveNotification } from "./src/utils/store";
 
 
  function App() {
@@ -33,6 +33,7 @@ import notifee, { AndroidImportance } from '@notifee/react-native';
 
   useEffect(() => {
     // 1️⃣ Request permissions
+   
     async function requestPermission() {
       const authStatus = await messaging().requestPermission();
       const enabled =
@@ -56,6 +57,7 @@ import notifee, { AndroidImportance } from '@notifee/react-native';
     // 3️⃣ Foreground message handler
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       console.log('📩 Foreground message received:', remoteMessage);
+      saveNotification(remoteMessage)
 
       // Show local notification
       await notifee.displayNotification({
@@ -75,6 +77,15 @@ import notifee, { AndroidImportance } from '@notifee/react-native';
     //@ts-ignore
     selectedLanguage&& i18n.changeLanguage(selectedLanguage.value)
   },[selectedLanguage])
+
+
+
+
+
+
+
+
+  
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />

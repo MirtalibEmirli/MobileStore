@@ -35,6 +35,11 @@ const TabStack = () => {
           <Tab.Screen options={{
             tabBarIcon:({ })=> <Notificationbing/>
           }} name='Notfications' component={NotificationStack}/>
+         
+         
+         
+         
+         
           <Tab.Screen options={
                 {
                     tabBarIcon:({ })=><Heart/>
